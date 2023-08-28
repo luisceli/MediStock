@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mediStock",
-    "slug": "mediStock",
+    "name": "Medi Stock",
+    "slug": "MediStock",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,13 +18,21 @@
       "supportsTablet": true
     },
     "android": {
+      "packaje": "com.medi.stock",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.luisceli.MediStock"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0bd31c8c-f406-4bbb-94d0-d249fcb1c25a"
+      }
     }
   }
 }
