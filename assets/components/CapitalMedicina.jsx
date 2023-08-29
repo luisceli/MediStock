@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import ImageHeader from "./ImageHeader";
 import Constants from "expo-constants";
+import { useNavigation } from '@react-navigation/native';
+
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import axios from "axios";
@@ -21,11 +23,13 @@ const CapitalMedicina = () => {
   const [historicoData, setHistoricoData] = useState([]);
 
   const [costoTotal, setCostoTotal] = useState([0]);
+  
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectItemid, setSelectItemId] = useState(null);
   const [selectedItemData, setSelectedItemData] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const navigation = useNavigation(); 
 
   const fetchCostoTotal = async () => {
     try {
@@ -43,6 +47,8 @@ const CapitalMedicina = () => {
       // Realizar la solicitud GET al backend para obtener los datos más recientes
       const response = await axios.get(`${baseUrl}medicamentos/get/reportetotal`);
       
+      setIsSuccessModalVisible(true);
+
       console.log('Guardado')
       console.log("Datos obtenidos:", response.data);
     } catch (error) {
@@ -120,6 +126,11 @@ const CapitalMedicina = () => {
     setSelectedItem(null);
     setIsModalVisible(false);
   };
+  
+  const closeModalSuccess = () => {
+    setIsSuccessModalVisible(false);
+    navigation.navigate('EstimacionCapitalScreen');
+  };
 
   const handleIncrement = () => {
     // Incrementar la cantidad del item seleccionado en 1
@@ -163,6 +174,7 @@ const CapitalMedicina = () => {
     }
   };
 
+  
   
   return (
     <View style={{ marginTop: Constants.statusBarHeight }}>
@@ -271,6 +283,33 @@ const CapitalMedicina = () => {
             </View>
           </Modal>
         )}
+
+        {isSuccessModalVisible && (
+  <Modal
+    visible={isSuccessModalVisible}
+    animationType="slide"
+    transparent={true}
+  >
+    <View style={styles.modalOverlay}>
+      <View style={styles.modalContainer}>
+        
+      <Image
+      source={require('./img/Groupvfuyttf.png')}
+      style={styles.successImage}
+    />
+
+        <Text style={styles.modalText}>Guardado con éxito</Text>
+
+        <TouchableOpacity style={styles.button}
+       onPress={closeModalSuccess}
+      >
+        <Text style={styles.buttonText}>Continuar</Text>
+      </TouchableOpacity>
+      </View>
+    </View>
+  </Modal>
+)}
+
       </View>
 
       <View style={styles.dataRow}>
@@ -457,6 +496,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 10,
+  },
+  successImage: {
+    alignSelf: 'center',
+    width: 100, // Ajusta el tamaño de la imagen según tus necesidades
+    height: 100, // Ajusta el tamaño de la imagen según tus necesidades
+    marginBottom: 10, // Espacio entre la imagen y el texto
   },
 });
 
