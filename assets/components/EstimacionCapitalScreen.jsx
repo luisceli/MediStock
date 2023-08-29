@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import ImageHeader from "./ImageHeader";
 
-const EstimacionCapitalScreen = () => {
+const EstimacionCapitalScreen = ({route}) => {
   const navigation = useNavigation();
 
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
@@ -11,6 +11,12 @@ const EstimacionCapitalScreen = () => {
   const navigateToScreen = (screenName, buttonIndex) => {
     navigation.navigate(screenName, { activeButtonIndex: buttonIndex });
   };
+
+  useEffect(() => {
+    const activeIndex = route.params?.activeButtonIndex ?? 0;
+    setActiveButtonIndex(activeIndex);
+  }, [route.params?.activeButtonIndex]);
+  
 
   const buttons = [
     {
@@ -33,7 +39,9 @@ const EstimacionCapitalScreen = () => {
       screenName: "Distribuciones",
       index: 3,
     },
-    { label: "Generar Reporte Final", screenName: "Reporte", index: 4 },
+    { label: "Generar Reporte Final", 
+    screenName: 
+    "Reporte", index: 4 },
   ];
 
   return (
@@ -114,7 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   disabledButton: {
-    backgroundColor: "red", // Color para botones deshabilitados
+    backgroundColor: "#D6E4FB", // Color para botones deshabilitados
   },
 });
 

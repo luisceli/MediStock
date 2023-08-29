@@ -134,7 +134,6 @@ const HistoricosMedicamento = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
   },
   yearPickerContainer: {
     flexDirection: "row",

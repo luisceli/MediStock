@@ -2,7 +2,6 @@ import React, { useState} from 'react';
 import Constants from 'expo-constants'
 import { View, TextInput, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-
 import ErrorMessage from './ErrorMessage';
 import axios from 'axios';
 import baseUrl from './comom/baseUrl';
@@ -10,7 +9,6 @@ import baseUrl from './comom/baseUrl';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ navigation}) => {
- 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +16,7 @@ const LoginScreen = ({ navigation}) => {
 
   // error
   const [error,setError]= useState('');
-  
+    
   const handleLogin = async () => {
          if(email==="" || password===""){
            setError("Ingrese las credenciales")
@@ -59,7 +57,10 @@ const LoginScreen = ({ navigation}) => {
     setShowPassword(prevState => !prevState);
     setEyeIconColor(prevState => (prevState === '#C3C3C3' ? '#2D81FE' : '#C3C3C3')); // Cambiar color del ícono
   };
+
+
   return (
+
     <View style={[styles.container, { marginTop: Constants.statusBarHeight }]}>
 
      
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '13.3%', 
   },
+  
   title: {
     fontSize: 24,
     fontWeight: 'bold',

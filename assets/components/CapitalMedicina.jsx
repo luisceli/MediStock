@@ -134,11 +134,12 @@ const CapitalMedicina = () => {
   };
   
   const closeModalSuccess = () => {
-    setIsSuccessModalVisible(false)
+    setIsSuccessModalVisible(false);
     const nextIndex = activeButtonIndex + 1;
     setActiveButtonIndex(nextIndex);
     navigation.navigate('EstimacionCapitalScreen', { activeButtonIndex: nextIndex });
   };
+  
 
   const handleIncrement = () => {
     // Incrementar la cantidad del item seleccionado en 1
