@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import ImageHeader from "./ImageHeader";
 import Constants from "expo-constants";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useRoute } from '@react-navigation/native';
 
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -31,6 +31,12 @@ const CapitalMedicina = () => {
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const navigation = useNavigation(); 
 
+  const route = useRoute();
+  const activeButtonIndexParam = route.params?.activeButtonIndex ?? 0;
+
+  const [activeButtonIndex, setActiveButtonIndex] = useState(activeButtonIndexParam);
+
+  console.log("Received activeButtonIndex:", activeButtonIndex);
   const fetchCostoTotal = async () => {
     try {
       const costoTotalResponse = await axios.get(
@@ -128,8 +134,10 @@ const CapitalMedicina = () => {
   };
   
   const closeModalSuccess = () => {
-    setIsSuccessModalVisible(false);
-    navigation.navigate('EstimacionCapitalScreen');
+    setIsSuccessModalVisible(false)
+    const nextIndex = activeButtonIndex + 1;
+    setActiveButtonIndex(nextIndex);
+    navigation.navigate('EstimacionCapitalScreen', { activeButtonIndex: nextIndex });
   };
 
   const handleIncrement = () => {
