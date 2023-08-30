@@ -22,10 +22,10 @@ jobs:
         run: npm install
 
       - name: Build Android
-        run: npx eas build --platform android
+        run: eas build --platform android
 
       - name: Submit to EAS
-        run: npx eas submit -p android --latest
+        run: eas submit -p android --latest
 
       - name: Publish Expo
         run: expo publish
