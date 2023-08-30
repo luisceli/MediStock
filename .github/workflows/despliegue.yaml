@@ -14,7 +14,7 @@ jobs:
           fi
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -33,5 +33,10 @@ jobs:
       - name: Build Android
         run: eas build --platform android
 
+      - name: Create Google Service Account Key
+        run: echo "$GOOGLE_SERVICE_ACCOUNT_KEY" > google-service-account.json
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+
       - name: Submit to Play Console
-        run: eas submit -p android --latest
+        run: eas submit -p android --latest --key-path google-service-account.json
