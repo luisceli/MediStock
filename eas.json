@@ -13,6 +13,10 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android":{
+        "serviceKeyPath": "../KeyPath/api-8950910575588146807-675002-97434116df55.json"
+      }
+    }
   }
 }

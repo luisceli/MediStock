@@ -1,0 +1,36 @@
+name: Expo Build and Publish
+
+on:
+  push:
+    branches:
+      - main # Puedes ajustar la rama según tus necesidades
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14" # Puedes ajustar la versión de Node.js
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Android
+        run: npx eas build --platform android
+
+      - name: Submit to EAS
+        run: npx eas submit -p android --latest
+
+      - name: Publish Expo
+        run: expo publish
+        env:
+          EXPO_CLI_NO_DOCTOR: "true" # Opcional, deshabilita las advertencias de doctor
+
+      - name: Cleanup
+        run: npm ci
