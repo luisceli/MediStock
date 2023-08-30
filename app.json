@@ -17,7 +17,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
+    "android": {  
       "packaje": "com.medi.stock",
       "versionCode": 6,
       "adaptiveIcon": {
