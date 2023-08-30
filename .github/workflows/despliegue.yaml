@@ -27,6 +27,9 @@ jobs:
       - name: Install expo-cli
         run: npm install -g expo-cli
 
+      - name: Install eas-cli
+        run: npm install -g eas-cli
+
       - name: Authenticate with EAS
         run: |
           echo -e "${{ secrets.EAS_EMAIL }}\n${{ secrets.EAS_PASSWORD }}" | expect -c '
@@ -42,14 +45,6 @@ jobs:
 
       - name: Build Android
         run: |
-          echo -e "${{ secrets.EAS_EMAIL }}\n${{ secrets.EAS_PASSWORD }}" | expect -c '
-            spawn eas login
-            expect "Email:"
-            send "$env(EXPECT_EOL)"
-            expect "Password:"
-            send "$env(EXPECT_EOL)"
-            interact
-          '
           eas build --platform android
         env:
           EXPECT_EOL: "\r"
