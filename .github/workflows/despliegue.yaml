@@ -31,7 +31,7 @@ jobs:
         run: |
           echo ${{ secrets.EAS_EMAIL }} > eas-email.txt
           echo ${{ secrets.EAS_PASSWORD }} > eas-password.txt
-          eas login --email "$(cat eas-email.txt)" --password "$(cat eas-password.txt)"
+          eas login --username "$(cat eas-email.txt)" --password "$(cat eas-password.txt)"
 
       - name: Build Android
         run: eas build --platform android
