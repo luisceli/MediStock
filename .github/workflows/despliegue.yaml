@@ -28,13 +28,13 @@ jobs:
         run: npm install -g eas-cli
 
       - name: Authenticate with EAS
-        run: npx eas login --token ${{ secrets.EXPO_ACCESS_TOKEN }}  
+        run: npx eas login ${{ secrets.EXPO_ACCESS_TOKEN }}  
 
       - name: Build Android
         run: npx eas build --platform android
         
       - name: Submit to EAS
-        run: npx eas submit -p android --latest --service-account-key-path ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        run: npx eas submit -p android --latest
         env:
           EXPO_CLI_NO_DOCTOR: 'true'
         
