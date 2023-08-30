@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: '14'  # Cambia esto a la versiÃ³n de Node.js que necesitas
 
-      -name: Install Dependencies
-         run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
       - name: Install expo-cli
         run: npm install -g expo-cli
