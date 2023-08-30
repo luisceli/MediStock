@@ -16,6 +16,7 @@ import { useNavigation,useRoute } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import axios from "axios";
+
 import baseUrl from "./comom/baseUrl";
 
 const CapitalEquipo = () => {

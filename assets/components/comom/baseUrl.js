@@ -1,7 +1,6 @@
-import { Platform } from "react-native";
-
 
 let baseUrl='https://medicalstockbackend-a04ed9f4809e.herokuapp.com/api/v1/'
+
 // let baseUrl='';
 
 // {Platform.OS== 'android'

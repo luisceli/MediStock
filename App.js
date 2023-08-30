@@ -1,5 +1,6 @@
 import React from 'react';
- 
+ import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { enableScreens } from 'react-native-screens';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -20,8 +21,10 @@ import Reporte from './assets/components/Reporte';
 
 const Stack= createStackNavigator();
 function App() {
+  enableScreens(); 
 return (
-  <NavigationContainer>
+
+<NavigationContainer>
     <Stack.Navigator initialRouteName="MainScreen">
       <Stack.Screen name="MainScreen" component={MainScreen}  options={{ headerShown: false }}/>
       <Stack.Screen name="LoginScreen" component={LoginScreen}  options={{ headerShown: false }}/>
@@ -40,6 +43,10 @@ return (
 
     </Stack.Navigator>
   </NavigationContainer>
+
+
+
+
 
  );
 }

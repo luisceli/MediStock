@@ -35,13 +35,13 @@ const EstimacionScreen = ({ navigation }) => {
       let response;
       switch (dataType) {
         case 'Insumos':
-          response = await axios.get(`${baseUrl}insumos`); // Assuming the endpoint is 'insumos'
+          response = await axios.get(`${baseUrl}insumos`); 
           break;
         case 'Equipos':
-          response = await axios.get(`${baseUrl}equipos`); // Assuming the endpoint is 'equipos'
+          response = await axios.get(`${baseUrl}equipos`); 
           break;
         default:
-          response = await axios.get(`${baseUrl}medicamentos`); // Assuming the endpoint is 'medicamentos'
+          response = await axios.get(`${baseUrl}medicamentos`); 
         
           break;
         
